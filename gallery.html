@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Photo Gallery - Event1</title>
+    <link rel="icon" href="gallery.png" type="image/png">
+
+
+    <style>
+        html {
+            scroll-behavior: smooth; /* Enable smooth scrolling */
+        }
+
+        body {
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Light Grey */
+        }
+        header {
+            background-color: #004d00; /* Dark Green */
+            color: #ffffff; /* White */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            height: 80px; /* Adjust height if necessary */
+        }
+        header img {
+            height: 60px; /* Adjust the height of the logos as needed */
+            width: auto;
+            margin: 0 10px; /* Add some space between logos */
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px; /* Adjust the font size of the header title as needed */
+            text-align: center;
+            position: absolute; /* Position it absolutely to center */
+            left: 50%; /* Move to the center */
+            transform: translateX(-50%); /* Center it based on its width */
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #00b300; /* Light Green */
+        }
+        nav a {
+            color: #ffffff; /* White */
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #004d00; /* Dark Green for hover effect */
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Four equal columns */
+            gap: 20px; /* Space between cards */
+        }
+        .gallery-item {
+            background-color: #ffffff; /* White background for cards */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative; /* Position relative for button placement */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+        .gallery-item:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+        }
+        .gallery-item .title {
+            margin: 10px 0;
+            font-size: 18px;
+            text-align: center;
+            color: #004d00; /* Dark Green */
+        }
+        .gallery-item .button {
+            background-color: #00b300; /* Dark Green */
+            color: #ffffff; /* White */
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            margin-top: auto;
+            text-decoration: none;
+        }
+        .gallery-item .button:hover {
+            background-color: #004d00; /* Darker Green */
+        }
+        .profile-pics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .profile-pics .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .profile-pics a {
+            display: block;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .profile-pics img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        footer {
+            background-color: #000000; /* Black */
+            color: #ffffff; /* White */
+            text-align: center;
+            padding: 10px 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #00b300; /* Dark Green */
+            color: #ffffff; /* White */
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            cursor: pointer;
+            display: none; /* Hidden by default */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #back-to-top:hover {
+            background-color: #004d00; /* Darker Green */
+        }
+
+        /* Center <h2> tags on mobile screens */
+        @media (max-width: 768px) {
+            section h2 {
+                text-align: center; /* Center <h2> text */
+                margin: 0 auto; /* Center with auto margins */
+                padding: 0 20px; /* Add padding for better appearance */
+            }
+            header img {
+                display: none; /* Hide the logo on screens smaller than 768px */
+            }
+            header h1 {
+                text-align: center; /* Center the title if it’s alone */
+                position: static; /* Remove absolute positioning for better centering */
+                transform: none; /* Reset transformation */
+            }
+            .gallery {
+                grid-template-columns: repeat(2, 1fr); /* Adjust to 2 columns on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="kld.png" alt="Logo 1">
+        <h1>KLD @4! Foundation Week Celebration - Event 1</h1>
+        <img src="iicslogo.png" alt="Logo 2"> <!-- Second logo -->
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    
+    <div class="container">
+        <section id="gallery">
+            <h2>Photo Gallery</h2>
+            <div class="gallery">
+                <!-- Example images, replace with your own -->
+                <div class="gallery-item">
+                    <img src="photo1.jpg" alt="Class Event 1">
+                    <button class="button" onclick="downloadImage('photo1.jpg', '1324124_13241_3214.jpg')">Download</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="kld.png" alt="Class Event 2">
+                    <button class="button" onclick="downloadImage('photo2.jpg', '1324124_13241_3214.jpg')">Download</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="kld.png" alt="Class Event 3">
+                    <button class="button" onclick="downloadImage('photo3.jpg', '1324124_13241_3214.jpg')">Download</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="kld.png" alt="Class Event 4">
+                    <button class="button" onclick="downloadImage('photo4.jpg', '1324124_13241_3214.jpg')">Download</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="kld.png" alt="Class Event 5">
+                    <button class="button" onclick="downloadImage('photo5.jpg', '1324124_13241_3214.jpg')">Download</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="kld.png" alt="Class Event 6">
+                    <button class="button" onclick="downloadImage('photo6.jpg', '1324124_13241_3214.jpg')">Download</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="kld.png" alt="Class Event 7">
+                    <button class="button" onclick="downloadImage('photo7.jpg', '1324124_13241_3214.jpg')">Download</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="kld.png" alt="Class Event 8">
+                    <button class="button" onclick="downloadImage('photo8.jpg', '1324124_13241_3214.jpg')">Download</button>
+                </div>
+            </div>
+        </section>
+
+        <br><br><br>
+        
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need to contact us, please email us at 
+                <a href="mailto:class@example.com">jmeelemancil@kld.edu.ph</a>.
+            </p>
+        </section>
+    </div>
+    
+    <button id="back-to-top" title="Go to Top">Top</button>
+
+    <footer>
+        &copy; 2024 Class Photo Gallery
+    </footer>
+
+    <script>
+        function downloadImage(url, filename) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Get the button element
+        const backToTopButton = document.getElementById('back-to-top');
+
+        // Show or hide the button based on scroll position
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        };
+
+        // Smooth scroll to the top when the button is clicked
+        backToTopButton.onclick = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+    </script>
+</body>
+</html>
