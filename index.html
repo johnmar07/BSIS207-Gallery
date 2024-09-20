@@ -5,92 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Photo Gallery</title>
     <link rel="icon" href="gallery.png" type="image/png">
-
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
     <style>
         html {
-            scroll-behavior: smooth; /* Enable smooth scrolling */
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Consolas', 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0; /* Light Grey */
+            background-color: #f0f0f0;
         }
+        
         header {
-            background-color: #004d00; /* Dark Green */
-            color: #ffffff; /* White */
+            background-color: #004d00;
+            color: #ffffff;
             padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            height: 80px; /* Adjust height if necessary */
+            height: 80px;
         }
+        
         header img {
-            height: 60px; /* Adjust the height of the logos as needed */
+            height: 60px;
             width: auto;
-            margin: 0 10px; /* Add some space between logos */
+            margin: 0 10px;
         }
+        
         header h1 {
             margin: 0;
-            font-size: 24px; /* Adjust the font size of the header title as needed */
+            font-size: 24px;
             text-align: center;
-            position: absolute; /* Position it absolutely to center */
-            left: 50%; /* Move to the center */
-            transform: translateX(-50%); /* Center it based on its width */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
+
         nav {
-            display: flex;
-            justify-content: center;
-            background-color: #00b300; /* Light Green */
+            background-color: #00b300;
         }
+        
         nav a {
-            color: #ffffff; /* White */
+            color: #ffffff;
             padding: 14px 20px;
             text-decoration: none;
             text-align: center;
         }
+        
         nav a:hover {
-            background-color: #004d00; /* Dark Green for hover effect */
+            background-color: #004d00;
         }
-        .container {
-            padding: 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
+
         .gallery {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* Four equal columns */
-            gap: 20px; /* Space between cards */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
+
         .gallery-item {
-            background-color: #ffffff; /* White background for cards */
+            background-color: #ffffff;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: relative; /* Position relative for button placement */
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 10px;
         }
+
         .gallery-item:hover {
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
+
         .gallery-item img {
             width: 100%;
             height: auto;
         }
+
         .gallery-item .title {
             margin: 10px 0;
             font-size: 18px;
             text-align: center;
-            color: #004d00; /* Dark Green */
+            color: #004d00;
         }
+
         .gallery-item .button {
-            background-color: #00b300; /* Dark Green */
-            color: #ffffff; /* White */
+            background-color: #00b300;
+            color: #ffffff;
             border: none;
             border-radius: 4px;
             padding: 8px 12px;
@@ -101,40 +100,16 @@
             margin-top: auto;
             text-decoration: none;
         }
+
         .gallery-item .button:hover {
-            background-color: #004d00; /* Darker Green */
+            background-color: #004d00;
         }
-        .profile-pics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .profile-pics .profile-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .profile-pics a {
-            display: block;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .profile-pics img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+
         footer {
-            background-color: #000000; /* Black */
-            color: #ffffff; /* White */
+            background-color: #000000;
+            color: #ffffff;
             text-align: center;
             padding: 10px 0;
-            bottom: 0;
-            width: 100%;
         }
 
         /* Back to Top Button */
@@ -142,389 +117,144 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #00b300; /* Dark Green */
-            color: #ffffff; /* White */
+            background-color: #00b300;
+            color: #ffffff;
             border: none;
             border-radius: 4px;
             padding: 10px 15px;
             cursor: pointer;
-            display: none; /* Hidden by default */
+            display: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         #back-to-top:hover {
-            background-color: #004d00; /* Darker Green */
-        }
-
-        /* Center <h2> tags on mobile screens */
-        @media (max-width: 768px) {
-            section h2 {
-                text-align: center; /* Center <h2> text */
-                margin: 0 auto; /* Center with auto margins */
-                padding: 0 20px; /* Add padding for better appearance */
-            }
-            header img {
-                display: none; /* Hide the logo on screens smaller than 768px */
-            }
-            header h1 {
-                text-align: center; /* Center the title if it’s alone */
-                position: static; /* Remove absolute positioning for better centering */
-                transform: none; /* Reset transformation */
-            }
-            .gallery {
-                grid-template-columns: repeat(2, 1fr); /* Adjust to 2 columns on small screens */
-            }
+            background-color: #004d00;
         }
     </style>
 </head>
 <body>
-    <header>
+    <header class="d-flex align-items-center">
         <img src="kld.png" alt="Logo 1">
         <h1>BSIS207 Class Photo Gallery</h1>
-        <img src="iicslogo.png" alt="Logo 2"> <!-- Second logo -->
+        <img src="iicslogo.png" alt="Logo 2">
     </header>
     
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="#profiles">207 Profiles</a>
-        <a href="#contact">Contact</a>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profiles">207 Profiles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
     
-    <div class="container">
+    <div class="container my-5">
         <section id="home">
-            <h2>Welcome to the Class Photo Gallery</h2>
-            <p>Here you can view and enjoy photos from our class events and activities.</p>
+            <h2 class="text-center">Welcome to the Class Photo Gallery</h2>
+            <p class="text-center">Here you can view and enjoy photos from our class events and activities.</p>
         </section>
         
         <section id="gallery">
-            <h2>Photo Gallery</h2>
+            <h2 class="text-center">Photo Gallery</h2>
             <div class="gallery">
-                <!-- Example images, replace with your own -->
                 <div class="gallery-item">
                     <img src="https://scontent.fmnl19-1.fna.fbcdn.net/v/t1.15752-9/457698062_553494350675336_8891523055570480762_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFBrYGKHxrPyqqsUJfpt2wwkExaDRbxCmKQTFoNFvEKYrAVmdJ4tfWqZnuc1M4jlIUyG9jVp10I9tzOEglgKpse&_nc_ohc=DLSWaPC6pmgQ7kNvgHLV7i1&_nc_ht=scontent.fmnl19-1.fna&_nc_gid=ABl1suZ_YH79CLLH42FHYMK&oh=03_Q7cD1QHIh5xI7Z2WjkNdRkFOOTz9uh2uRs5ju6aBx1gs7vMwWA&oe=6711A25B" alt="Class Event 1">
-                    <div class="title" style="font-weight: 900;">KLD @4! Foundation Week Celebration</div>
-                    <a href="event1.html">
-                        <button class="button">View Event Photo</button>
-                    </a>
+                    <div class="title">KLD @4! Foundation Week Celebration</div>
+                    <a href="event1.html" class="button">View Event Photo</a>
                 </div>
                 <div class="gallery-item">
                     <img src="kld.png" alt="Class Event 2">
-                    <div class="title" style="font-weight: 900;">Event 2 Title</div>
-                    <a href="...">
-                        <button class="button">View Details</button>
-                    </a>
+                    <div class="title">Event 2 Title</div>
+                    <a href="..." class="button">View Details</a>
                 </div>
                 <div class="gallery-item">
                     <img src="kld.png" alt="Class Event 3">
-                    <div class="title" style="font-weight: 900;">Event 3 Title</div>
-                    <a href="...">
-                        <button class="button">View Details</button>
-                    </a>
+                    <div class="title">Event 3 Title</div>
+                    <a href="..." class="button">View Details</a>
                 </div>
                 <div class="gallery-item">
                     <img src="kld.png" alt="Class Event 4">
-                    <div class="title" style="font-weight: 900;">Event 4 Title</div>
-                    <a href="...">
-                        <button class="button">View Details</button>
-                    </a>
+                    <div class="title">Event 4 Title</div>
+                    <a href="..." class="button">View Details</a>
                 </div>
-                <div class="gallery-item">
-                    <img src="kld.png" alt="Class Event 5">
-                    <div class="title" style="font-weight: 900;">Event 5 Title</div>
-                    <button class="button">View Details</button>
-                </div>
-                <div class="gallery-item">
-                    <img src="kld.png" alt="Class Event 6">
-                    <div class="title" style="font-weight: 900;">Event 6 Title</div>
-                    <a href="...">
-                        <button class="button">View Details</button>
-                    </a>
-                </div>
-                <div class="gallery-item">
-                    <img src="kld.png" alt="Class Event 7">
-                    <div class="title" style="font-weight: 900;">Event 7 Title</div>
-                    <a href="...">
-                        <button class="button">View Details</button>
-                    </a>
-                </div>
-                <div class="gallery-item">
-                    <img src="kld.png" alt="Class Event 8">
-                    <div class="title" style="font-weight: 900;">Event 8 Title</div>
-                    <a href="...">
-                        <button class="button">View Details</button>
-                    </a>
-                </div>
+                <!-- Add more gallery items as needed -->
             </div>
         </section>
 
-        <br><br><br>
-        
-        <section id="profiles">
-            <h2>BSIS 207 Profiles</h2>
-            <p>BSIS 207 - THE FORMIDABLE - Boys</p>
-            <div class="profile-pics">
+        <section id="profiles" class="my-5">
+            <h2 class="text-center">BSIS 207 Profiles</h2>
+            <p class="text-center">BSIS 207 - THE FORMIDABLE - Boys</p>
+            <div class="row justify-content-center">
                 <!-- Example profile links, replace with your own -->
-                <div class="profile-container">
-                    <a>
-                        <img src="adelle.jpg" alt="Classmate 1">
-                    </a>
+                <div class="col-6 col-md-3">
+                    <div class="profile-container text-center">
+                        <a>
+                            <img src="adelle.jpg" alt="Classmate 1" class="img-fluid rounded-circle">
+                        </a>
+                    </div>
                 </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="vhal.jpg" alt="Classmate 2">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="deyv.jpg" alt="Classmate 3">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="lara.png" alt="Classmate 4">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="peria.jpg" alt="Classmate 5">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Jerico.jpg" alt="Classmate 6">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="jermell.jpg" alt="Classmate 7">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Lloyd.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="varias.png" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="JM.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="casale.png" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="alimangohan.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Kian.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Arevalo.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Klen.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Loyola.png" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Ludwig.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Gonzales.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="valencia.png" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Mildexe.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="nathaniel.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Almazan.png" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Allada.png" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="aguelo.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="rei.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="reyner.png" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="santiago.png" alt="Classmate 8">
-                    </a>
-                </div>
+                <!-- Repeat for other profiles -->
             </div>
 
-            <br><br>
-
-            <p>BSIS 207 - THE FORMIDABLE - Girls</p>
-            <div class="profile-pics">
+            <p class="text-center">BSIS 207 - THE FORMIDABLE - Girls</p>
+            <div class="row justify-content-center">
                 <!-- Example profile links, replace with your own -->
-                <div class="profile-container">
-                    <a>
-                        <img src="alessandra.jpg" alt="Classmate 1">
-                    </a>
+                <div class="col-6 col-md-3">
+                    <div class="profile-container text-center">
+                        <a>
+                            <img src="alessandra.jpg" alt="Classmate 1" class="img-fluid rounded-circle">
+                        </a>
+                    </div>
                 </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="althea.jpg" alt="Classmate 2">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="arianne.jpg" alt="Classmate 3">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="audrey.jpg" alt="Classmate 4">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="votacion.jpg" alt="Classmate 5">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="faith.jpg" alt="Classmate 6">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="diolola.jpg" alt="Classmate 7">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="eazel.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="pascual.png" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="Fedes.png" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="jessa.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="tagle.png" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="khn.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="marinel.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="rhea.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="richlyn.jpg" alt="Classmate 8">
-                    </a>
-                </div>
-                <div class="profile-container">
-                    <a>
-                        <img src="sheena.jpg" alt="Classmate 8">
-                    </a>
-                </div>
+                <!-- Repeat for other profiles -->
+            </div>
         </section>
         
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>If you have any questions or need to contact us, please email us at 
-                <a href="mailto:class@example.com">jmeelemancil@kld.edu.ph</a>.
+        <section id="contact" class="my-5">
+            <h2 class="text-center">Contact Us</h2>
+            <p class="text-center">If you have any questions or need to contact us, please email us at 
+                <a href="mailto:class@example.com">jmeelemancil@kld.edu.ph</a>
             </p>
         </section>
     </div>
-    
-    <button id="back-to-top" title="Go to Top">Top</button>
 
     <footer>
-        &copy; 2024 Class Photo Gallery
+        <p>© 2024 Class Photo Gallery. All rights reserved.</p>
     </footer>
+    
+    <button id="back-to-top">Back to Top</button>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Get the button element
-        const backToTopButton = document.getElementById('back-to-top');
-
-        // Show or hide the button based on scroll position
+        // Back to Top functionality
+        const backToTopBtn = document.getElementById('back-to-top');
         window.onscroll = function() {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                backToTopButton.style.display = 'block';
+                backToTopBtn.style.display = "block";
             } else {
-                backToTopButton.style.display = 'none';
+                backToTopBtn.style.display = "none";
             }
         };
-
-        // Smooth scroll to the top when the button is clicked
-        backToTopButton.onclick = function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        backToTopBtn.onclick = function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
         };
     </script>
 </body>
 </html>
+
